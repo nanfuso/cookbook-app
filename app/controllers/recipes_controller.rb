@@ -15,6 +15,8 @@ class RecipesController < ApplicationController
                             directions: params[:directions]
                             )
         recipe.save
+        flash[:success] = "Recipe Successfully Created!"
+        redirect_to "/recipes/#{recipe.id}"
     end
 
     def show
@@ -35,5 +37,15 @@ class RecipesController < ApplicationController
                                 directions: params[:directions]
                                 )
         recipe.save
+        flash[:success] = "Recipe Successfully Updated!"
+        redirect_to "recipes/#{recipe.id}"
+    end
+
+    def destroy
+        recipe = Recipe.find(params[:id])
+        recipe.destroy
+
+        flash[:danger] = "Recipe Deleted!"
+        redirect_to "/"
     end
 end
