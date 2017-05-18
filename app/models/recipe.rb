@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+    belongs_to :user
     def ingredient_list
         ingredients.split(", ")
     end
@@ -9,6 +10,10 @@ class Recipe < ApplicationRecord
 
     def friendly_updated_at
         updated_at.strftime('%b %d, %Y')
+    end
+
+    def chef
+        user.name
     end
 
     # def friendly_prep_time
